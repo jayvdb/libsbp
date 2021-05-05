@@ -97,6 +97,15 @@ def classnameify(s):
   """
   return ''.join(w if w in ACRONYMS else w.title() for w in s.split('_'))
 
+
+def has_real_message(l):
+  """
+  Determine if module has any real messages.
+  """
+  return any(m.static and m.is_real_message for m in l)
+
+
+JENV.filters['has_real_message'] = has_real_message
 JENV.filters['construct_py'] = construct_format
 JENV.filters['classnameify'] = classnameify
 JENV.filters['pydoc'] = pydoc_format
@@ -114,12 +123,16 @@ def render_source(output_dir, package_spec, jenv=JENV):
   module_path = ".".join(package_spec.identifier.split(".")[1:-1])
   includes = [".".join(i.split(".")[:-1]) for i in package_spec.includes]
   includes = [i for i in includes if i != "types"]
+  include_map = {
+    "gnss": ["CarrierPhase", "GnssSignal", "GnssSignalDep", "GPSTime", "GPSTime", "GPSTimeDep", "GPSTimeSec", "SvId"],
+  }
   print(destination_filename, includes)
   with open(destination_filename, 'w') as f:
     f.write(py_template.render(msgs=package_spec.definitions,
                                filepath="/".join(package_spec.filepath) + ".yaml",
                                module_path=module_path,
                                include=includes,
+                               include_map=include_map,
                                timestamp=package_spec.creation_timestamp,
                                description=package_spec.description))
 

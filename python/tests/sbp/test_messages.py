@@ -40,9 +40,9 @@ def test_messages():
   test_count = process_path(ROOTPATH)
 
   total_messages = len(_SBP_TABLE)
-  missing_messages = total_messages - test_count
+  total_messages - test_count
 
-  assert test_count > 0, "No message definitions found in %s" % ROOTDIR
+  assert test_count > 0, "No message definitions found in %s" % ROOTPATH
   assert test_count <= total_messages, "Found tests for nonexistent messages"
 
   # TODO: ideally we need tests for every message type
