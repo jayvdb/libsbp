@@ -93,7 +93,7 @@ be normalized.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return UARTChannel.build(d)
     
 class Period(object):
@@ -149,7 +149,7 @@ can cause momentary RTK solution outages.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return Period.build(d)
     
 class Latency(object):
@@ -204,7 +204,7 @@ communication latency in the system.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return Latency.build(d)
     
 class NetworkUsage(object):
@@ -265,7 +265,7 @@ though may not necessarily be populated with a value.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return NetworkUsage.build(d)
     
 SBP_MSG_ALMANAC = 0x0069

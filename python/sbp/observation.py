@@ -66,7 +66,7 @@ counter (ith packet of n)
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return ObservationHeader.build(d)
     
 class Doppler(object):
@@ -110,7 +110,7 @@ as positive for approaching satellites.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return Doppler.build(d)
     
 class PackedObsContent(object):
@@ -191,7 +191,7 @@ estimate for the signal is valid.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PackedObsContent.build(d)
     
 class PackedOsrContent(object):
@@ -269,7 +269,7 @@ from 0 to 15 and the most significant nibble is reserved for future use.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PackedOsrContent.build(d)
     
 class EphemerisCommonContent(object):
@@ -332,7 +332,7 @@ GLO: 0 = valid, non-zero = invalid
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return EphemerisCommonContent.build(d)
     
 class EphemerisCommonContentDepB(object):
@@ -394,7 +394,7 @@ Others: 0 = valid, non-zero = invalid
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return EphemerisCommonContentDepB.build(d)
     
 class EphemerisCommonContentDepA(object):
@@ -457,7 +457,7 @@ GLO: 0 = valid, non-zero = invalid
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return EphemerisCommonContentDepA.build(d)
     
 class ObservationHeaderDep(object):
@@ -500,7 +500,7 @@ counter (ith packet of n)
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return ObservationHeaderDep.build(d)
     
 class CarrierPhaseDepA(object):
@@ -545,7 +545,7 @@ the opposite sign as the pseudorange.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return CarrierPhaseDepA.build(d)
     
 class PackedObsContentDepA(object):
@@ -603,7 +603,7 @@ carrier phase ambiguity may have changed.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PackedObsContentDepA.build(d)
     
 class PackedObsContentDepB(object):
@@ -663,7 +663,7 @@ carrier phase ambiguity may have changed.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PackedObsContentDepB.build(d)
     
 class PackedObsContentDepC(object):
@@ -724,7 +724,7 @@ carrier phase ambiguity may have changed.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PackedObsContentDepC.build(d)
     
 class GnssCapb(object):
@@ -832,7 +832,7 @@ https://www.caat.or.th/wp-content/uploads/2018/03/SL-2018.18.E-1.pdf)
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GnssCapb.build(d)
     
 class AlmanacCommonContent(object):
@@ -906,7 +906,7 @@ Satellite health status for GLO:
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return AlmanacCommonContent.build(d)
     
 class AlmanacCommonContentDep(object):
@@ -980,7 +980,7 @@ Satellite health status for GLO:
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return AlmanacCommonContentDep.build(d)
     
 class SvAzEl(object):
@@ -1025,7 +1025,7 @@ class SvAzEl(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return SvAzEl.build(d)
     
 SBP_MSG_OBS = 0x004A

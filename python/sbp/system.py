@@ -69,7 +69,7 @@ state is reported as initializing, the specific state should be ignored.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return SubSystemReport.build(d)
     
 SBP_MSG_STARTUP = 0xFF00

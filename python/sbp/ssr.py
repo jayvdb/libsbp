@@ -67,7 +67,7 @@ The corrections conform with RTCMv3 MT 1059 / 1065.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return CodeBiasesContent.build(d)
     
 class PhaseBiasesContent(object):
@@ -127,7 +127,7 @@ Increased for every discontinuity in phase.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return PhaseBiasesContent.build(d)
     
 class STECHeader(object):
@@ -198,7 +198,7 @@ following RTCM DF391 specification.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return STECHeader.build(d)
     
 class GriddedCorrectionHeader(object):
@@ -276,7 +276,7 @@ specification in units of m.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GriddedCorrectionHeader.build(d)
     
 class STECSatElement(object):
@@ -324,7 +324,7 @@ but in units of TECU instead of m.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return STECSatElement.build(d)
     
 class TroposphericDelayCorrectionNoStd(object):
@@ -365,7 +365,7 @@ class TroposphericDelayCorrectionNoStd(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TroposphericDelayCorrectionNoStd.build(d)
     
 class TroposphericDelayCorrection(object):
@@ -412,7 +412,7 @@ point.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TroposphericDelayCorrection.build(d)
     
 class STECResidualNoStd(object):
@@ -452,7 +452,7 @@ class STECResidualNoStd(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return STECResidualNoStd.build(d)
     
 class STECResidual(object):
@@ -499,7 +499,7 @@ at the grid point,
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return STECResidual.build(d)
     
 class GridElementNoStd(object):
@@ -546,7 +546,7 @@ grid point.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GridElementNoStd.build(d)
     
 class GridElement(object):
@@ -593,7 +593,7 @@ stddev) for each satellite at the grid point.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GridElement.build(d)
     
 class SatelliteAPC(object):
@@ -655,7 +655,7 @@ elevation variations in 1 degree increments.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return SatelliteAPC.build(d)
     
 class STECHeaderDepA(object):
@@ -716,7 +716,7 @@ following RTCM DF391 specification.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return STECHeaderDepA.build(d)
     
 class GriddedCorrectionHeaderDepA(object):
@@ -784,7 +784,7 @@ specifcation in units of m.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GriddedCorrectionHeaderDepA.build(d)
     
 class GridDefinitionHeaderDepA(object):
@@ -850,7 +850,7 @@ Also includes an RLE encoded validity list.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GridDefinitionHeaderDepA.build(d)
     
 SBP_MSG_SSR_ORBIT_CLOCK = 0x05DD

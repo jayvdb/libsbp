@@ -71,7 +71,7 @@ measured signal power.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TrackingChannelState.build(d)
     
 class MeasurementState(object):
@@ -116,7 +116,7 @@ the Slot ID (from 1 to 28)
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return MeasurementState.build(d)
     
 class TrackingChannelCorrelation(object):
@@ -157,7 +157,7 @@ class TrackingChannelCorrelation(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TrackingChannelCorrelation.build(d)
     
 class TrackingChannelCorrelationDep(object):
@@ -198,7 +198,7 @@ class TrackingChannelCorrelationDep(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TrackingChannelCorrelationDep.build(d)
     
 class TrackingChannelStateDepA(object):
@@ -243,7 +243,7 @@ class TrackingChannelStateDepA(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TrackingChannelStateDepA.build(d)
     
 class TrackingChannelStateDepB(object):
@@ -288,7 +288,7 @@ class TrackingChannelStateDepB(object):
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return TrackingChannelStateDepB.build(d)
     
 SBP_MSG_TRACKING_STATE_DETAILED_DEP_A = 0x0021

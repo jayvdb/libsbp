@@ -14,7 +14,6 @@
 Various structs shared between modules
 """
 
-
 import construct
 
 from sbp.utils import fmt_repr
@@ -64,7 +63,7 @@ the Slot ID in [1,28]
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GnssSignal.build(d)
     
 class SvId(object):
@@ -106,7 +105,7 @@ a space vehicle
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return SvId.build(d)
     
 class GnssSignalDep(object):
@@ -155,7 +154,7 @@ Note: unlike GnssSignal, GPS satellites are encoded as
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GnssSignalDep.build(d)
     
 class GPSTimeDep(object):
@@ -198,7 +197,7 @@ transition.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GPSTimeDep.build(d)
     
 class GPSTimeSec(object):
@@ -241,7 +240,7 @@ transition.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GPSTimeSec.build(d)
     
 class GPSTime(object):
@@ -292,7 +291,7 @@ from -500000 to 500000)
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return GPSTime.build(d)
     
 class CarrierPhase(object):
@@ -336,7 +335,7 @@ same sign as the pseudorange.
       setattr(self, n, getattr(p, n))
 
   def to_binary(self):
-    d = dict([(k, getattr(obj, k)) for k in self.__slots__])
+    d = dict([(k, getattr(self, k)) for k in self.__slots__])
     return CarrierPhase.build(d)
     
 
