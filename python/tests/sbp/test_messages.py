@@ -11,39 +11,44 @@
 
 from .utils import assert_package
 from sbp.table import _SBP_TABLE
-import os
+import os.path
 
-ROOTPATH = "../spec/tests/yaml"
+import pytest
+
+HERE = os.path.dirname(__file__)
+PYTHON_ROOT = os.path.join(HERE, "..", "..")
+ROOTPATH = os.path.join(PYTHON_ROOT, "..", "spec", "tests", "yaml")
 
 def process_files(path, filenames):
   """
-  Scans for <msg>.yaml files and verifies decoding
-
+  Scans for <msg>.yaml files
   """
-  test_count = 0
   for filename in filenames:
     if filename.endswith(".yaml"):
       filepath = os.path.join(path, filename)
-      assert_package(filepath, filename)
-      test_count += 1
-  return test_count
+      filepath = os.path.relpath(filepath, ROOTPATH)
+      yield(filepath)
 
 def process_path(path):
-  test_count = 0
   for root, dirs, files in os.walk(path, topdown=True):
-    test_count += process_files(root, files)
-  for dir in dirs:
-    test_count += process_path(os.path.join(root, dir))
-  return test_count
+    for path in process_files(root, files):
+      yield path
 
-def test_messages():
-  test_count = process_path(ROOTPATH)
+CASES = list(process_path(ROOTPATH))
 
+def test_message_case_count():
   total_messages = len(_SBP_TABLE)
-  total_messages - test_count
+  test_count = len(CASES)
+  missing_messages = total_messages - test_count
 
   assert test_count > 0, "No message definitions found in %s" % ROOTPATH
   assert test_count <= total_messages, "Found tests for nonexistent messages"
 
   # TODO: ideally we need tests for every message type
-  #assert missing_messages == 0, "Missing tests for %d out of %d messages" % (missing_messages, total_messages)
+  assert missing_messages <= 123, "Missing tests for %d out of %d messages" % (missing_messages, total_messages)
+
+
+
+@pytest.mark.parametrize("case", CASES)
+def test_message(case):
+  assert_package(ROOTPATH + "/" + case)
