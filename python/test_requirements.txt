@@ -4,4 +4,5 @@ pytest-flakes
 coverage
 tox
 pyyaml
+dataclasses
 numpy
