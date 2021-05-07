@@ -1,0 +1,227 @@
+description: Unit tests for swiftnav.sbp.observation MsgSvAzEl
+generated_on: '2021-05-07 22:29:29.848227'
+package: sbp.observation
+tests:
+- msg:
+    fields:
+      azel:
+      - az: 70
+        el: 13
+        sid:
+          code: 0
+          sat: 4
+      - az: 152
+        el: 17
+        sid:
+          code: 0
+          sat: 5
+      - az: 19
+        el: 65
+        sid:
+          code: 0
+          sat: 7
+      - az: 38
+        el: 38
+        sid:
+          code: 0
+          sat: 8
+      - az: 74
+        el: 46
+        sid:
+          code: 0
+          sat: 9
+      - az: 157
+        el: 6
+        sid:
+          code: 0
+          sat: 13
+      - az: 114
+        el: 42
+        sid:
+          code: 0
+          sat: 14
+      - az: 22
+        el: 18
+        sid:
+          code: 0
+          sat: 27
+      - az: 112
+        el: 30
+        sid:
+          code: 0
+          sat: 28
+      - az: 154
+        el: 54
+        sid:
+          code: 0
+          sat: 30
+      - az: 94
+        el: 42
+        sid:
+          code: 3
+          sat: 5
+      - az: 147
+        el: 56
+        sid:
+          code: 3
+          sat: 6
+      - az: 166
+        el: 14
+        sid:
+          code: 3
+          sat: 7
+      - az: 130
+        el: 17
+        sid:
+          code: 3
+          sat: 9
+      - az: 18
+        el: 38
+        sid:
+          code: 3
+          sat: 15
+      - az: 152
+        el: 56
+        sid:
+          code: 3
+          sat: 16
+      - az: 40
+        el: 18
+        sid:
+          code: 3
+          sat: 17
+      - az: 63
+        el: 7
+        sid:
+          code: 3
+          sat: 18
+      - az: 15
+        el: 8
+        sid:
+          code: 3
+          sat: 24
+      - az: 129
+        el: 50
+        sid:
+          code: 12
+          sat: 14
+      - az: 87
+        el: 12
+        sid:
+          code: 12
+          sat: 21
+      - az: 143
+        el: 52
+        sid:
+          code: 12
+          sat: 24
+      - az: 131
+        el: 1
+        sid:
+          code: 12
+          sat: 25
+      - az: 16
+        el: 63
+        sid:
+          code: 12
+          sat: 26
+      - az: 24
+        el: 12
+        sid:
+          code: 12
+          sat: 29
+      - az: 148
+        el: 38
+        sid:
+          code: 12
+          sat: 33
+      - az: 49
+        el: 25
+        sid:
+          code: 12
+          sat: 35
+      - az: 154
+        el: 12
+        sid:
+          code: 31
+          sat: 193
+      - az: 122
+        el: 38
+        sid:
+          code: 14
+          sat: 1
+      - az: 158
+        el: 26
+        sid:
+          code: 14
+          sat: 4
+      - az: 58
+        el: 0
+        sid:
+          code: 14
+          sat: 13
+      - az: 34
+        el: 3
+        sid:
+          code: 14
+          sat: 15
+      - az: 123
+        el: 74
+        sid:
+          code: 14
+          sat: 19
+      - az: 169
+        el: 79
+        sid:
+          code: 14
+          sat: 21
+      - az: 24
+        el: 32
+        sid:
+          code: 14
+          sat: 27
+    module: sbp.observation
+    name: MsgSvAzEl
+  msg_type: 151
+  raw_json: '{"preamble": 85, "msg_type": 151, "sender": 31183, "length": 140, "payload":
+    "BABGDQUAmBEHABNBCAAmJgkASi4NAJ0GDgByKhsAFhIcAHAeHgCaNgUDXioGA5M4BwOmDgkDghEPAxImEAOYOBEDKBISAz8HGAMPCA4MgTIVDFcMGAyPNBkMgwEaDBA/HQwYDCEMlCYjDDEZwR+aDAEOeiYEDp4aDQ46AA8OIgMTDntKFQ6pTxsOGCA=",
+    "crc": 10946, "azel": [{"sid": {"sat": 4, "code": 0}, "az": 70, "el": 13}, {"sid":
+    {"sat": 5, "code": 0}, "az": 152, "el": 17}, {"sid": {"sat": 7, "code": 0}, "az":
+    19, "el": 65}, {"sid": {"sat": 8, "code": 0}, "az": 38, "el": 38}, {"sid": {"sat":
+    9, "code": 0}, "az": 74, "el": 46}, {"sid": {"sat": 13, "code": 0}, "az": 157,
+    "el": 6}, {"sid": {"sat": 14, "code": 0}, "az": 114, "el": 42}, {"sid": {"sat":
+    27, "code": 0}, "az": 22, "el": 18}, {"sid": {"sat": 28, "code": 0}, "az": 112,
+    "el": 30}, {"sid": {"sat": 30, "code": 0}, "az": 154, "el": 54}, {"sid": {"sat":
+    5, "code": 3}, "az": 94, "el": 42}, {"sid": {"sat": 6, "code": 3}, "az": 147,
+    "el": 56}, {"sid": {"sat": 7, "code": 3}, "az": 166, "el": 14}, {"sid": {"sat":
+    9, "code": 3}, "az": 130, "el": 17}, {"sid": {"sat": 15, "code": 3}, "az": 18,
+    "el": 38}, {"sid": {"sat": 16, "code": 3}, "az": 152, "el": 56}, {"sid": {"sat":
+    17, "code": 3}, "az": 40, "el": 18}, {"sid": {"sat": 18, "code": 3}, "az": 63,
+    "el": 7}, {"sid": {"sat": 24, "code": 3}, "az": 15, "el": 8}, {"sid": {"sat":
+    14, "code": 12}, "az": 129, "el": 50}, {"sid": {"sat": 21, "code": 12}, "az":
+    87, "el": 12}, {"sid": {"sat": 24, "code": 12}, "az": 143, "el": 52}, {"sid":
+    {"sat": 25, "code": 12}, "az": 131, "el": 1}, {"sid": {"sat": 26, "code": 12},
+    "az": 16, "el": 63}, {"sid": {"sat": 29, "code": 12}, "az": 24, "el": 12}, {"sid":
+    {"sat": 33, "code": 12}, "az": 148, "el": 38}, {"sid": {"sat": 35, "code": 12},
+    "az": 49, "el": 25}, {"sid": {"sat": 193, "code": 31}, "az": 154, "el": 12}, {"sid":
+    {"sat": 1, "code": 14}, "az": 122, "el": 38}, {"sid": {"sat": 4, "code": 14},
+    "az": 158, "el": 26}, {"sid": {"sat": 13, "code": 14}, "az": 58, "el": 0}, {"sid":
+    {"sat": 15, "code": 14}, "az": 34, "el": 3}, {"sid": {"sat": 19, "code": 14},
+    "az": 123, "el": 74}, {"sid": {"sat": 21, "code": 14}, "az": 169, "el": 79}, {"sid":
+    {"sat": 27, "code": 14}, "az": 24, "el": 32}]}'
+  raw_packet: !!binary |
+    VlpjQXozbU1CQUJHRFFVQW1CRUhBQk5CQ0FBbUpna0FTaTROQUowR0RnQnlLaHNBRmhJY0FIQWVI
+    Z0NhTmdVRFhpb0dBNU00QndPbURna0RnaEVQQXhJbUVBT1lPQkVES0JJU0F6OEhHQU1QQ0E0TWdU
+    SVZERmNNR0F5UE5Ca01nd0VhREJBL0hRd1lEQ0VNbENZakRERVp3UithREFFT2VpWUVEcDRhRFE0
+    NkFBOE9JZ01URG50S0ZRNnBUeHNPR0NEQ0tnPT0=
+  sbp:
+    crc: '0x2AC2'
+    length: 140
+    msg_type: '0x97'
+    payload: !!binary |
+      QkFCR0RRVUFtQkVIQUJOQkNBQW1KZ2tBU2k0TkFKMEdEZ0J5S2hzQUZoSWNBSEFlSGdDYU5nVURY
+      aW9HQTVNNEJ3T21EZ2tEZ2hFUEF4SW1FQU9ZT0JFREtCSVNBejhIR0FNUENBNE1nVElWREZjTUdB
+      eVBOQmtNZ3dFYURCQS9IUXdZRENFTWxDWWpEREVad1IrYURBRU9laVlFRHA0YURRNDZBQThPSWdN
+      VERudEtGUTZwVHhzT0dDQT0=
+    preamble: '0x55'
+    sender: '0x79CF'
