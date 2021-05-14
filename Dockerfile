@@ -15,6 +15,8 @@ FROM ubuntu:bionic
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ARG DOCKER_USER=dockerdev
+
 ENV NODE_VERSION=v12.22.0
 
 ENV RUSTUP_HOME=/rust
@@ -87,14 +89,14 @@ RUN npm install npm@latest mocha quicktype -g
 # Add a "dockerdev" user with sudo capabilities
 # 1000 is the first user ID issued on Ubuntu; might
 # be different for Mac users. Might need to add more.
-RUN useradd -u 1000 -ms /bin/bash -G sudo dockerdev \
+RUN useradd -u 1000 -ms /bin/bash -G sudo $DOCKER_USER \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers \
     && find $NVM_DIR -exec chmod a+rw {} \; \
     && find $RUSTUP_HOME -exec chmod a+rw {} \; \
     && find $CARGO_HOME -exec chmod a+rw {} \;
 
 WORKDIR /mnt/workspace
-USER dockerdev
+USER $DOCKER_USER
 
 RUN stack install --resolver lts-10.10 sbp
 
