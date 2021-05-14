@@ -24,4 +24,6 @@ jobs:
         run: docker images
 
       - name: Run make gen inside image
-        run: docker run --userns=host --rm -v $PWD:/mnt/workspace -t libsbp-build:latest make gen
+        run: |
+          echo $PWD
+          docker run --rm --mount type=bind,source=$PWD,destination=/mnt/workspace -t libsbp-build:latest make gen
