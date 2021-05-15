@@ -36,7 +36,7 @@ RUN \
       make
 
 RUN addgroup "$DOCKER_USER"
-RUN useradd -m -u $DOCKER_UID -G $DOCKER_USER,sudo -s "/bin/bash" $DOCKER_USER
+RUN useradd -m -u $DOCKER_UID -g $DOCKER_USER -G sudo -s "/bin/bash" $DOCKER_USER
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 
 WORKDIR /mnt/workspace
