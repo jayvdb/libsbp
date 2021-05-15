@@ -28,4 +28,7 @@ jobs:
       - name: Run make gen inside image
         run: |
           echo $PWD
-          docker run --rm --mount type=bind,source=$PWD,destination=/mnt/workspace -t libsbp-build:latest sudo mkdir .tox
+          ls -al
+          docker run --rm --mount type=bind,source=$PWD,destination=/mnt/workspace -t libsbp-build:latest ls -al
+          docker run --rm --mount type=bind,source=$PWD,destination=/mnt/workspace -t libsbp-build:latest mkdir .tox
+          ls -al .tox
