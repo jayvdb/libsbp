@@ -15,6 +15,7 @@ FROM ubuntu:bionic
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ARG DOCKER_UID=1000
 ARG DOCKER_USER=dockerdev
 
 ENV NODE_VERSION=v12.22.0
@@ -34,9 +35,9 @@ RUN \
       wget \
       make
 
-RUN addgroup "$DOCKER_USER" \
- && adduser "$DOCKER_USER" -G "$DOCKER_USER" -u 1000 -ms /bin/bash -G sudo $DOCKER_USER \
-    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+RUN addgroup "$DOCKER_USER"
+RUN useradd "$DOCKER_USER" -G "$DOCKER_USER" -u $DOCKER_UID -ms /bin/bash -G sudo $DOCKER_USER
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 
 WORKDIR /mnt/workspace
 USER $DOCKER_USER
