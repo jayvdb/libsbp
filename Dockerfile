@@ -72,6 +72,7 @@ RUN \
   && apt-get install -y --no-install-recommends --no-install-suggests \
       libpython2.7-stdlib \
       libpython3.8-stdlib \
+      python-is-python3 \
       python3-pip \
       python3.5-dev \
       python3.6-dev \
