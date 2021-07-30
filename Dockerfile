@@ -40,6 +40,7 @@ RUN \
       libgmp-dev \
       zlib1g-dev \
       zip unzip \
+      gcc-7 g++-7 \
       make \
       pandoc \
       llvm \
