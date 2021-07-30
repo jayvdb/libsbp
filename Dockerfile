@@ -70,9 +70,9 @@ RUN \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get update \
   && apt-get install -y --no-install-recommends --no-install-suggests \
-      python-pip-whl \
       libpython2.7-stdlib \
       libpython3.8-stdlib \
+      python3-pip \
       python3.5-dev \
       python3.6-dev \
       python3.7-dev \
