@@ -24,6 +24,7 @@ jobs:
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
           cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          working-directory: c
   coverage:
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +36,7 @@ jobs:
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
           cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          working-directory: c
           preset: coverage
   # Static analyzers:
   linters:
@@ -51,6 +53,7 @@ jobs:
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
           cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          working-directory: c
           preset: ${{ matrix.preset }}
   # Tests with various sanitizers and valgrind:
   test:
@@ -72,6 +75,7 @@ jobs:
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
           cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          working-directory: c
           preset: ${{ matrix.preset }}
   # Test installation:
   install:
@@ -85,4 +89,5 @@ jobs:
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
           cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          working-directory: c
           preset: install
