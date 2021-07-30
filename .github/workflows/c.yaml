@@ -15,7 +15,7 @@ jobs:
     # supported by github actions:
     env:
       CC: ${{ matrix.compiler }}
-      CXX: ${{ matrix.compiler }}
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -29,7 +29,7 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     env:
-      CC: clang++
+      CC: clang
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
         preset: [ cppcheck, clang-tidy ]
     runs-on: ubuntu-latest
     env:
-      CC: clang++
+      CC: clang
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
@@ -74,7 +74,7 @@ jobs:
           - clang-sanitizer-safe-stack
     runs-on: ubuntu-latest
     env:
-      CC: clang++
+      CC: clang
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
@@ -91,7 +91,7 @@ jobs:
   install:
     runs-on: ubuntu-latest
     env:
-      CC: clang++
+      CC: clang
       CXX: clang++
     steps:
       - uses: actions/checkout@v2
