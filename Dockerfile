@@ -53,6 +53,7 @@ RUN \
       graphviz \
       texlive-latex-base \
       imagemagick \
+      enchant \
       clang-format-6.0 \
   && rm -rf /var/lib/apt/lists/* \
   && curl -s "https://get.sdkman.io" | bash \
