@@ -40,10 +40,10 @@ RUN \
       libgmp-dev \
       zlib1g-dev \
       zip unzip \
-      build-essential \
+      make \
       pandoc \
       llvm \
-      clang \
+      clang-6.0 \
       texlive-science \
       texlive-fonts-extra \
       check \
@@ -54,7 +54,6 @@ RUN \
       texlive-latex-base \
       imagemagick \
       enchant \
-      clang-6.0 \
       clang-format-6.0 \
   && rm -rf /var/lib/apt/lists/* \
   && curl -s "https://get.sdkman.io" | bash \
