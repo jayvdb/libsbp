@@ -127,6 +127,6 @@ USER dockerdev
 
 RUN stack install --resolver lts-10.10 --only-dependencies sbp
 
-CMD ["make", "all", "CC=cc", "CXX=c++"]
+CMD ["make", "all", "CC=cc", "CXX=c++", "CMAKEFLAGS=-DVERBOSE=ON"]
 
 # vim: ft=dockerfile
