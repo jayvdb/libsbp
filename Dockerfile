@@ -47,7 +47,6 @@ RUN \
       texlive-science \
       texlive-fonts-extra \
       check \
-      ccache \
       pkg-config \
       doxygen \
       graphviz \
