@@ -43,7 +43,7 @@ jobs:
   linters:
     strategy:
       matrix:
-        preset: [ cppcheck, clang-tidy ]
+        preset: [ clang-tidy ]  # cppcheck fails with common.h:69]: (error) #error Unknown compiler, please override SBP_PACK_START, SBP_PACK_END, and SBP_ATTR_PACKED
     runs-on: ubuntu-latest
     env:
       CC: clang
