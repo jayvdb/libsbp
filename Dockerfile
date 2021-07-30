@@ -71,11 +71,11 @@ RUN \
   && apt-get update \
   && apt-get install -y \
       python-pip-whl \
-      python3-pip \
+      libpython2.7-stdlib \
+      libpython3.8-stdlib \
       python3.5-dev \
       python3.6-dev \
       python3.7-dev \
-      python3.8-dev \
       python3.9-dev python3.9-dist \
   && pip3 install tox sphinx tox-run-command \
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --no-modify-path \
