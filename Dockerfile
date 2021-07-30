@@ -11,7 +11,7 @@
 # This describes an image that should be able to generate libsbp bindings.
 # See the README.md for instructions on how to use it.
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -70,7 +70,7 @@ RUN \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get update \
   && apt-get install -y \
-      python-pip \
+      python-pip-whl \
       python3-pip \
       python3.5-dev \
       python3.6-dev \
