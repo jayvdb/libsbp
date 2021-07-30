@@ -28,9 +28,6 @@ jobs:
           working-directory: c
   coverage:
     runs-on: ubuntu-latest
-    env:
-      CC: clang
-      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -39,7 +36,7 @@ jobs:
       - uses: docker://lpenz/ghaction-cmake
         with:
           dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
-          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1 -DCMAKE_C/CXX_COMPILER=clang/clang++ -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
           working-directory: c
           preset: coverage
   # Static analyzers:
