@@ -1,38 +1,88 @@
+---
 name: C
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-    tags:
-      - "*"
-  pull_request:
-    paths:
-      - "c/**"
-      - .github/workflows/c.yaml
+on: [push, pull_request]
 jobs:
-  coverage:
-    name: Test
-    runs-on: ubuntu-18.04
+  # Regular C build with two compilers, using the environment:
+  build_using_compiler_in_environment:
+    strategy:
+      matrix:
+        compiler:
+          - clang
+          - gcc
+    runs-on: ubuntu-latest
+    # We can use cmakeflags for this, or we can just use
+    # regular environment variables, as they are already
+    # supported by github actions:
+    env:
+      CC: ${{ matrix.compiler }}
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: recursive
           fetch-depth: 0
-
-      - name: Setup
-        run: |
-          sudo apt-get -qq update
-          sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
-
-      - name: Run tests
-        run: make test-c
-        env:
-          CMAKEFLAGS: -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug -DBUILD_EXAMPLES=true
-
-      - name: Build examples
-        run: make -C c/build examples
-
-      - name: Upload coverage to codecov.io
-        run: |
-          bash <(curl -s https://codecov.io/bash) -s c/build || echo "Codecov did not collect coverage reports";
+          submodules: recursive
+      - uses: docker://lpenz/ghaction-cmake:v0.11
+        with:
+          dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: docker://lpenz/ghaction-cmake:v0.11
+        with:
+          dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          preset: coverage
+  # Static analyzers:
+  linters:
+    strategy:
+      matrix:
+        preset: [ cppcheck, clang-tidy ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: docker://lpenz/ghaction-cmake:v0.11
+        with:
+          dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          preset: ${{ matrix.preset }}
+  # Tests with various sanitizers and valgrind:
+  test:
+    strategy:
+      matrix:
+        preset:
+          - clang-sanitizer-address
+          - clang-sanitizer-memory
+          - clang-sanitizer-undefined
+          - clang-sanitizer-dataflow
+          - clang-sanitizer-safe-stack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: docker://lpenz/ghaction-cmake:v0.11
+        with:
+          dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          preset: ${{ matrix.preset }}
+  # Test installation:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - uses: docker://lpenz/ghaction-cmake:v0.11
+        with:
+          dependencies_debian: python3-pip python3-setuptools python3-wheel libpython3-dev
+          cmakeflags: -DPYTHON=python3 -DCMAKE_POSITION_INDEPENDENT_CODE=1
+          preset: install
