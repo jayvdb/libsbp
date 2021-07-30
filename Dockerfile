@@ -54,6 +54,7 @@ RUN \
       texlive-latex-base \
       imagemagick \
       enchant \
+      clang-6.0 \
       clang-format-6.0 \
   && rm -rf /var/lib/apt/lists/* \
   && curl -s "https://get.sdkman.io" | bash \
