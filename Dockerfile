@@ -28,7 +28,7 @@ ENV PATH=/usr/lib/ccache:/cargo/bin:/rust/bin:${PATH}
 
 RUN \
      apt-get update \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
       git \
       sudo \
       software-properties-common \
@@ -69,7 +69,7 @@ RUN \
   && gradle --version \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get update \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
       python-pip-whl \
       libpython2.7-stdlib \
       libpython3.8-stdlib \
@@ -86,9 +86,9 @@ ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
 
 RUN \
      wget -O - ${KITWARE_KEY_URL} 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
-  && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' \ 
+  && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal main' \
   && apt-get update \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
     cmake
 
 ENV NVM_DIR=/opt/nvm
