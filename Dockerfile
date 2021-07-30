@@ -58,7 +58,9 @@ RUN \
   && rm -rf /var/lib/apt/lists/* \
   && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 \
   && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 10 \
-  && which gcc g++ \
+  && update-alternatives --install /usr/bin/cc gcc /usr/bin/gcc-7 10 \
+  && update-alternatives --install /usr/bin/c++ g++ /usr/bin/g++-7 10 \
+  && which gcc g++ cc c++ \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
               sdk install java $JAVA_VERSION; sdk install gradle $GRADLE_VERSION; \
