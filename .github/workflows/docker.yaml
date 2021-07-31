@@ -1,11 +1,7 @@
 name: Build docker image
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - Dockerfile
-      - Makefile
-      - .github/workflows/docker.yaml
+  push:
 jobs:
   build:
     name: Build docker image
