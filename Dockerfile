@@ -28,7 +28,7 @@ ENV PATH=/usr/lib/ccache:/cargo/bin:/rust/bin:${PATH}
 
 RUN \
      apt-get update \
-  && apt-get install -y --no-install-suggests \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
       git \
       sudo \
       software-properties-common \
