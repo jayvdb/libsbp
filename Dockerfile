@@ -47,14 +47,14 @@ RUN \
       pandoc \
       llvm \
       clang \
-      texlive-science \
       texlive-fonts-extra \
+      texlive-latex-extra \
+      texlive-science \
       check \
       ccache \
       pkg-config \
       doxygen \
       graphviz \
-      texlive-latex-base \
       imagemagick \
       clang-format-6.0 \
   && rm -rf /var/lib/apt/lists/* \
