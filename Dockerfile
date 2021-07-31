@@ -55,14 +55,16 @@ RUN \
       imagemagick \
       enchant \
       clang-format-6.0 \
-  && rm -rf /var/lib/apt/lists/* \
-  && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN \
+  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10 \
   && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 10 \
   && update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-7 10 \
   && update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++-7 10 \
   && which gcc g++ cc c++ \
   && curl -s "https://get.sdkman.io" | bash \
-  && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
+  && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; sdkman_curl_retry=2; \
               sdk install java $JAVA_VERSION; sdk install gradle $GRADLE_VERSION; \
 	      which java; which gradle"
 
@@ -83,10 +85,21 @@ RUN \
       python3.6-dev \
       python3.7-dev \
       python3.9-dev python3.9-dist \
-  && pip3 install tox sphinx tox-run-command \
-  && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --no-modify-path \
-  && curl -sSL https://get.haskellstack.org/ | sh \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && pip3 install tox sphinx tox-run-command
+
+RUN \
+  apt-get update \
+  && apt-get install -y --no-install-recommends \
+      gcc g++ # Needed by rust
+
+RUN curl -sSL https://get.haskellstack.org/ | sh
+
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path
+RUN rustup component add rustfmt
+
+RUN stack install --resolver lts-10.10 Cabal
+
 
 ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
 
@@ -95,7 +108,8 @@ RUN \
   && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal main' \
   && apt-get update \
   && apt-get install -y --no-install-recommends --no-install-suggests \
-    cmake
+    cmake \
+  && rm -rf /var/lib/apt/lists/*
 
 ENV NVM_DIR=/opt/nvm
 
@@ -125,8 +139,12 @@ RUN \
 WORKDIR /mnt/workspace
 USER dockerdev
 
+# When building on macos, ensure docker preferences have 6G of memory
+# https://github.com/commercialhaskell/stack/issues/3963
 RUN stack install --resolver lts-10.10 --only-dependencies sbp
 
-CMD ["make", "all", "CC=cc", "CXX=c++", "CMAKEFLAGS=-DVERBOSE=ON"]
+CMD ["make", "all"]
+
+ENV CC=gcc-7 CXX=g++-7
 
 # vim: ft=dockerfile
