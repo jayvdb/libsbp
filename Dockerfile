@@ -107,7 +107,7 @@ RUN \
 ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:${PATH}
 
-RUN npm install npm@latest mocha quicktype -g
+RUN npm install pnpm && pnpm install -g mocha quicktype
 
 ARG UID=1000
 

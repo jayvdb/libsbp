@@ -343,8 +343,8 @@ test-python:
 
 test-javascript:
 	$(call announce-begin,"Running JavaScript tests")
-	npm install
-	npm test
+	pnpm install
+	pnpm test
 	$(call announce-end,"Finished running JavaScript tests")
 
 test-java:
