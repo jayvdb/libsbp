@@ -101,7 +101,6 @@ RUN \
       libfontbox-java \
       libpdfbox-java \
       libthai-data \
-      python3-lib2to3 \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
