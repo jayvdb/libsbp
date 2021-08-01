@@ -28,23 +28,26 @@ ENV SDKMAN_DIR=/opt/sdkman
 
 ENV PATH=/usr/lib/ccache:/cargo/bin:/rust/bin:${PATH}
 
+ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
+
 RUN \
      apt-get update \
   && apt-get install -y --no-install-recommends \
       apt-utils \
       gpg \
+      gnupg \
       software-properties-common \
+      sudo \
       wget \
   && add-apt-repository ppa:deadsnakes/ppa \
+  && echo $KITWARE_KEY_URL \
   && wget -O - ${KITWARE_KEY_URL} 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
   && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal main' \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
       git \
-      sudo \
-      wget \
       curl \
-      gnupg netbase \
+      netbase \
       libudev-dev \
       uuid-dev \
       libffi-dev \
@@ -77,6 +80,20 @@ RUN \
       python3.9 \
       # from kitware
       cmake \
+  && curl -sSL https://get.haskellstack.org/ | sh \
+  && apt remove -y \
+      git-man \
+      gnupg \
+      gpg \
+      libdpkg-perl \
+      liberror-perl \
+      netbase \
+      packagekit \
+      software-properties-common \
+      wget \
+  && apt autoremove -y \
+  && apt remove -y --allow-remove-essential \
+      apt \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
@@ -91,10 +108,7 @@ RUN \
   && gradle --version \
   && pip3 install tox sphinx tox-run-command \
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path \
-  && rustup component add rustfmt \
-  && curl -sSL https://get.haskellstack.org/ | sh
-
-ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
+  && rustup component add rustfmt
 
 ENV NVM_DIR=/opt/nvm
 
@@ -126,7 +140,7 @@ USER dockerdev
 
 RUN \
   if [ "$(ls /tmp)" ]; then ls /tmp; false; fi \
-  stack install --resolver lts-10.10 sbp \
+  && stack install --resolver lts-10.10 sbp \
   && rm -rf /tmp/*
 
 CMD ["make", "all"]
