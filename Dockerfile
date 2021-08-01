@@ -37,8 +37,10 @@ RUN \
       apt-utils \
       wget \
       curl \
+      gnupg netbase \
       libudev-dev \
       uuid-dev \
+      libffi-dev \
       libgmp-dev \
       zlib1g-dev \
       zip unzip \
