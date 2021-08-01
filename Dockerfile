@@ -86,8 +86,6 @@ RUN \
       gpg \
       netbase \
       packagekit \
-      python3-distutils \
-      python3-lib2to3 \
       software-properties-common \
       wget \
   && apt autoremove -y \
@@ -101,6 +99,8 @@ RUN \
       libfontbox-java \
       libpdfbox-java \
       libthai-data \
+      python3-distutils \
+      python3-lib2to3 \
   && sudo dpkg -r --force-depends \
       git-man \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
