@@ -86,11 +86,21 @@ RUN \
       gpg \
       netbase \
       packagekit \
+      python3-distutils \
+      python3-lib2to3 \
       software-properties-common \
       wget \
   && apt autoremove -y \
   && apt remove -y --allow-remove-essential \
       apt \
+      dpkg-dev \
+      fontconfig-config \
+      libcommons-logging-java \
+      libcommons-parent-java \
+      libdpkg-perl \
+      libfontbox-java \
+      libpdfbox-java \
+      libthai-data \
   && sudo dpkg -r --force-depends \
       git-man \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
