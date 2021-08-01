@@ -82,11 +82,8 @@ RUN \
       cmake \
   && curl -sSL https://get.haskellstack.org/ | sh \
   && apt remove -y \
-      git-man \
       gnupg \
       gpg \
-      libdpkg-perl \
-      liberror-perl \
       netbase \
       packagekit \
       software-properties-common \
@@ -94,6 +91,9 @@ RUN \
   && apt autoremove -y \
   && apt remove -y --allow-remove-essential \
       apt \
+  && sudo dpkg -r --force-depends \
+      git-man \
+  && if [ ! -f /usr/bin/git ]; then false; fi \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
