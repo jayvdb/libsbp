@@ -93,7 +93,7 @@ RUN \
       apt \
   && sudo dpkg -r --force-depends \
       git-man \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
               sdk install java $JAVA_VERSION; sdk install gradle $GRADLE_VERSION; \
@@ -120,7 +120,7 @@ RUN \
 ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:${PATH}
 
-RUN npm install npm@latest mocha quicktype -g
+RUN npm install npm@latest mocha quicktype -g && sudo rm -rf /tmp/*
 
 ARG UID=1000
 
@@ -137,7 +137,10 @@ RUN \
 WORKDIR /mnt/workspace
 USER dockerdev
 
-RUN stack install --resolver lts-10.10 sbp
+RUN \
+  if [ "$(ls /tmp)" ]; then ls /tmp; false; fi \
+  && stack install --resolver lts-10.10 sbp \
+  && rm -rf /tmp/*
 
 CMD ["make", "all"]
 
