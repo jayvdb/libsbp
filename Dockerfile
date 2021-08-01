@@ -117,7 +117,7 @@ RUN \
 ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:${PATH}
 
-RUN npm install npm@latest mocha quicktype -g
+RUN npm install npm@latest mocha quicktype -g && sudo rm -rf /tmp/*
 
 ARG UID=1000
 
@@ -135,8 +135,7 @@ WORKDIR /mnt/workspace
 USER dockerdev
 
 RUN stack install --resolver lts-10.10 sbp \
-  && rm -rf /tmp/* \
-  && if [ "$(ls /tmp)" ]; then false; fi
+  && rm -rf /tmp/*
 
 CMD ["make", "all"]
 
