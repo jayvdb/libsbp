@@ -59,7 +59,11 @@ RUN \
       graphviz \
       imagemagick \
       clang-format-6.0 \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* /tmp/* \
+  && find /usr/lib/python*/ \
+    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
+       -name '*.pyc' -o -name '*.pyo' \
+    \) -prune -exec rm -rf '{}' '+' \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
               sdk install java $JAVA_VERSION; sdk install gradle $GRADLE_VERSION; \
@@ -83,10 +87,14 @@ RUN \
       python3.7\
       python3.9 \
   && pip3 install tox sphinx tox-run-command \
+  && rm -rf /var/lib/apt/lists/* /tmp/* \
+  && find /usr/lib/python*/ \
+    \( -name 'test' -o -name 'tests' -o -name 'test_*' -o \
+       -name '*.pyc' -o -name '*.pyo' \
+    \) -prune -exec rm -rf '{}' '+' \
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path \
   && rustup component add rustfmt \
-  && curl -sSL https://get.haskellstack.org/ | sh \
-  && rm -rf /var/lib/apt/lists/*
+  && curl -sSL https://get.haskellstack.org/ | sh
 
 ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
 
@@ -96,7 +104,7 @@ RUN \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
     cmake \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* /tmp/*
 
 ENV NVM_DIR=/opt/nvm
 
@@ -126,7 +134,9 @@ RUN \
 WORKDIR /mnt/workspace
 USER dockerdev
 
-RUN stack install --resolver lts-10.10 sbp
+RUN stack install --resolver lts-10.10 sbp \
+  && rm -rf /tmp/* \
+  && if [ "$(ls /tmp)" ]; then false; fi
 
 CMD ["make", "all"]
 
