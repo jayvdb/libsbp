@@ -91,8 +91,10 @@ RUN \
   && apt autoremove -y \
   && apt remove -y --allow-remove-essential \
       apt \
+  && sudo dpkg -r --force-depends \
       dpkg-dev \
       fontconfig-config \
+      git-man \
       libcommons-logging-java \
       libcommons-parent-java \
       libdpkg-perl \
@@ -101,8 +103,6 @@ RUN \
       libthai-data \
       python3-distutils \
       python3-lib2to3 \
-  && sudo dpkg -r --force-depends \
-      git-man \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
