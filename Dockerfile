@@ -31,10 +31,17 @@ ENV PATH=/usr/lib/ccache:/cargo/bin:/rust/bin:${PATH}
 RUN \
      apt-get update \
   && apt-get install -y --no-install-recommends \
+      apt-utils \
+      gpg \
+      software-properties-common \
+      wget \
+  && add-apt-repository ppa:deadsnakes/ppa \
+  && wget -O - ${KITWARE_KEY_URL} 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
+  && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal main' \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
       git \
       sudo \
-      software-properties-common \
-      apt-utils \
       wget \
       curl \
       gnupg netbase \
@@ -47,6 +54,10 @@ RUN \
       build-essential \
       $CC $CXX \
       pandoc \
+      libpython2.7-stdlib \
+      libpython3.8-stdlib \
+      python-is-python3 \
+      python3-pip \
       llvm \
       clang \
       texlive-fonts-extra \
@@ -59,6 +70,13 @@ RUN \
       graphviz \
       imagemagick \
       clang-format-6.0 \
+      # from deadsnakes
+      python3.5 \
+      python3.6 \
+      python3.7\
+      python3.9 \
+      # from kitware
+      cmake \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
   && curl -s "https://get.sdkman.io" | bash \
   && bash -c "source $SDKMAN_DIR/bin/sdkman-init.sh; \
@@ -71,32 +89,12 @@ ENV PATH=${SDKMAN_DIR}/candidates/gradle/current/bin:${PATH}
 RUN \
      java --version \
   && gradle --version \
-  && add-apt-repository ppa:deadsnakes/ppa \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-      libpython2.7-stdlib \
-      libpython3.8-stdlib \
-      python-is-python3 \
-      python3-pip \
-      python3.5 \
-      python3.6 \
-      python3.7\
-      python3.9 \
   && pip3 install tox sphinx tox-run-command \
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path \
   && rustup component add rustfmt \
-  && curl -sSL https://get.haskellstack.org/ | sh \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
+  && curl -sSL https://get.haskellstack.org/ | sh
 
 ARG KITWARE_KEY_URL=https://apt.kitware.com/keys/kitware-archive-latest.asc
-
-RUN \
-     wget -O - ${KITWARE_KEY_URL} 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null \
-  && add-apt-repository 'deb https://apt.kitware.com/ubuntu/ focal main' \
-  && apt-get update \
-  && apt-get install -y --no-install-recommends \
-    cmake \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
 
 ENV NVM_DIR=/opt/nvm
 
