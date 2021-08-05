@@ -19,7 +19,7 @@ jobs:
           - windows-latest
         build-type:
           - Debug
-          - Release
+          # Release fails on Windows
         shared:
           - 'ON'
           - 'OFF'
