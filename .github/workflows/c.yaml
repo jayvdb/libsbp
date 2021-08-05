@@ -51,4 +51,4 @@ jobs:
 
       - name: Run install
         working-directory: c/build
-        run: make install
+        run: make install DESTDIR=./install_prefix
