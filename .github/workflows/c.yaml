@@ -32,7 +32,7 @@ jobs:
             sudo apt-get -qq update
             sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
           elif [ "$RUNNER_OS" == "macOS" ]; then
-            true
+            brew install pkg-config eigen libserialport
           elif [ "$RUNNER_OS" == "Windows" ]; then
             choco install eigen
             echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
