@@ -15,6 +15,7 @@ jobs:
       matrix:
         os:
           - ubuntu-18.04
+          - macos-10.15
           - windows-latest
     name: Test
     runs-on: ${{ matrix.os }}
@@ -30,6 +31,8 @@ jobs:
           if [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt-get -qq update
             sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            true
           elif [ "$RUNNER_OS" == "Windows" ]; then
             echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
           fi
