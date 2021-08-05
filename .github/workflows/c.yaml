@@ -35,7 +35,7 @@ jobs:
           elif [ "$RUNNER_OS" == "macOS" ]; then
             brew install pkg-config eigen libserialport
           elif [ "$RUNNER_OS" == "Windows" ]; then
-            echo 'CMAKEFLAGS=-DCMAKE_BUILD_TYPE=Debug' >> $GITHUB_ENV
+            echo 'CMAKEFLAGS=-DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"' >> $GITHUB_ENV
             choco install eigen
             echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
           fi
