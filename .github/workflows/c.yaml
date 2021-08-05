@@ -48,3 +48,6 @@ jobs:
         run: make -C c/build examples
         env:
           CMAKEFLAGS: -v -DCMAKE_BUILD_TYPE=Debug
+
+      - name: Run install
+        run: make install
