@@ -34,6 +34,7 @@ jobs:
           elif [ "$RUNNER_OS" == "macOS" ]; then
             true
           elif [ "$RUNNER_OS" == "Windows" ]; then
+            vcpkg install eigen3
             echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
           fi
 
