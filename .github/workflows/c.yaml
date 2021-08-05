@@ -7,6 +7,8 @@ on:
     paths:
       - "c/**"
       - .github/workflows/c.yaml
+env:
+  LLVM_PATH_WIN: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/Llvm/x64/bin"
 jobs:
   coverage:
     strategy:
@@ -22,11 +24,15 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Setup
-        if: matrix.os == 'ubuntu-18.04'
+      - name: Setup ${{ matrix.os }}
+        shell: bash
         run: |
-          sudo apt-get -qq update
-          sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get -qq update
+            sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
+          fi
 
       - name: Run tests
         run: make test-c
