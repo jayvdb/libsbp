@@ -19,7 +19,7 @@ jobs:
           - windows-latest
         build-type:
           - Debug
-          # Release fails on Windows
+          - Release
         shared:
           - 'ON'
           - 'OFF'
@@ -27,6 +27,9 @@ jobs:
           # excludes shared on Windows
           - os: windows-latest
             shared: 'ON'
+          # excludes Release on Windows
+          - os: windows-latest
+            build-type: Release
     name: Test
     runs-on: ${{ matrix.os }}
     steps:
@@ -60,3 +63,9 @@ jobs:
       - name: Run install
         working-directory: c/build
         run: make install DESTDIR=./install_prefix
+
+      - name: Find .lib
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          find . -name '*.lib'
