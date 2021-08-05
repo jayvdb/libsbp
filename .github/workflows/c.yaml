@@ -23,6 +23,10 @@ jobs:
         shared:
           - 'ON'
           - 'OFF'
+        exclude:
+          # excludes shared on Windows
+          - os: windows-latest
+            shared: 'ON'
     name: Test
     runs-on: ${{ matrix.os }}
     steps:
