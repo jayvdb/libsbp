@@ -7,8 +7,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unknown-warning-option -Werror -std=c++1
 
 add_executable(libsbp_tcp_2sigma_example tcp_2sigma_example.cc)
 
-find_package(PkgConfig)
-find_package(Eigen3)
+find_package(Eigen3 REQUIRED)
 
 option(SHOW_PLOT "" OFF)
 
@@ -18,7 +17,7 @@ include_directories("/usr/local/include/")
 target_link_libraries(libsbp_tcp_2sigma_example sbp)
 
 if (SHOW_PLOT)
-  find_package(OpenCV)
+  find_package(opencv REQUIRED)
   set(CMAKE_CXX_FLAGS "-DSHOW_PLOT ${CMAKE_CXX_FLAGS}")
   target_link_libraries(libsbp_tcp_2sigma_example opencv_core opencv_imgproc opencv_highgui)
 endif()

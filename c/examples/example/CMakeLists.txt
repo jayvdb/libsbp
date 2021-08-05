@@ -8,11 +8,10 @@ set(CMAKE_C_FLAGS "-Wall -Werror -std=gnu99 ${CMAKE_C_FLAGS}")
 add_executable(libsbp_example example.c)
 
 find_package(PkgConfig)
-pkg_check_modules(LIBSERIALPORT libserialport)
-link_directories(${LIBSERIALPORT_LIBRARY_DIRS})
+pkg_check_modules(LIBSERIALPORT libserialport REQUIRED)
 include_directories(${LIBSERIALPORT_INCLUDE_DIRS})
 
 link_directories("/usr/local/lib/")
 include_directories("/usr/local/include/")
 
-target_link_libraries(libsbp_example serialport sbp)
+target_link_libraries(libsbp_example ${LIBSERIALPORT_LINK_LIBRARIES} sbp)
