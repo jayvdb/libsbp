@@ -47,7 +47,7 @@ jobs:
           fi
 
       - name: Run tests
-        run: make test-c
+        run: make test-c VERBOSE=1
 
       - name: Build examples
         if: matrix.os != 'windows-latest'
