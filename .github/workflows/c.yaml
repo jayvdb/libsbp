@@ -28,22 +28,23 @@ jobs:
       - name: Setup ${{ matrix.os }}
         shell: bash
         run: |
+          echo 'CMAKEFLAGS=-DCMAKE_BUILD_TYPE=Debug -DBUILD_EXAMPLES=true' >> $GITHUB_ENV
           if [ "$RUNNER_OS" == "Linux" ]; then
             sudo apt-get -qq update
             sudo apt-get -qq install lcov libeigen3-dev libserialport-dev
           elif [ "$RUNNER_OS" == "macOS" ]; then
             brew install pkg-config eigen libserialport
           elif [ "$RUNNER_OS" == "Windows" ]; then
+            echo 'CMAKEFLAGS=-DCMAKE_BUILD_TYPE=Debug' >> $GITHUB_ENV
             choco install eigen
             echo "$LLVM_PATH_WIN" >> $GITHUB_PATH
           fi
 
       - name: Run tests
         run: make test-c
-        env:
-          CMAKEFLAGS: -DCMAKE_BUILD_TYPE=Debug -DBUILD_EXAMPLES=true
 
       - name: Build examples
+        if: matrix.os != 'windows-latest'
         run: make -C c/build examples
         env:
           CMAKEFLAGS: -v -DCMAKE_BUILD_TYPE=Debug
