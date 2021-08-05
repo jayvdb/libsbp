@@ -45,3 +45,5 @@ jobs:
 
       - name: Build examples
         run: make -C c/build examples
+        env:
+          CMAKEFLAGS: -v -DCMAKE_BUILD_TYPE=Debug
