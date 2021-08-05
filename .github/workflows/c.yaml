@@ -30,6 +30,9 @@ jobs:
           # excludes Release on Windows
           - os: windows-latest
             build-type: Release
+          # excludes Release on Windows
+          - os: macos-10.15
+            build-type: Release
     name: Test
     runs-on: ${{ matrix.os }}
     steps:
