@@ -15,7 +15,7 @@ jobs:
       matrix:
         os:
           - ubuntu-18.04
-          - macos-10.15
+          # macos-10.15
           - windows-latest
         build-type:
           - Debug
@@ -27,9 +27,6 @@ jobs:
           # excludes shared on Windows
           - os: windows-latest
             shared: 'ON'
-          # excludes Release on Windows
-          - os: windows-latest
-            build-type: Release
           # excludes Release on Windows
           - os: macos-10.15
             build-type: Release
