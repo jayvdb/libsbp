@@ -22,7 +22,7 @@ package manager or from http://www.cmake.org/.
 
 ## Requirements for graphical build
 If compiled with -DSHOW\_PLOT then the ellipses will be graphically displayed.
-This functionality requires OpenCV3.  On Debian-based systems:
+This functionality requires OpenCV2.  On Debian-based systems:
 
 ```shell
 sudo apt-get install libopencv-dev
@@ -31,7 +31,8 @@ sudo apt-get install libopencv-dev
 On mac:
 
 ```shell
-brew install opencv@3
+brew install opencv@2
+brew link opencv@2
 ```
 
 ## Installation
