@@ -50,4 +50,5 @@ jobs:
           CMAKEFLAGS: -v -DCMAKE_BUILD_TYPE=Debug
 
       - name: Run install
+        working-directory: c/build
         run: make install
