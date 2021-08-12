@@ -30,7 +30,7 @@ jobs:
         run: make -C c/build examples
 
       - name: Run install
-        run: make -C c/build install
+        run: make -C c/build install DESTDIR=./install
 
       - name: Upload coverage to codecov.io
         run: |
